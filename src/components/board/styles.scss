@@ -1,0 +1,25 @@
+.board {
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+
+    .cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2rem;
+      width: 2rem;
+      background: rgb(233, 233, 233);
+      &.X {
+        background: rgb(230, 212, 140);
+      }
+
+      &.O {
+        background: rgb(138, 147, 250);
+      }
+    }
+  }
+}
