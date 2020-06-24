@@ -5,12 +5,19 @@ import { observer, inject } from 'mobx-react';
 export const Board = inject('game')(
   observer(({ game }) => {
     const { board } = game;
+
     return (
       <div className={'board'}>
-        {board.map((row) => (
+        {board.map((row, i) => (
           <div className={'row'}>
-            {row.map((cell) => (
-              <div className={`cell ${cell}`}> {cell} </div>
+            {row.map((cell, j) => (
+              <div
+                className={`cell ${cell}`}
+                onClick={function onPlay() {
+                  game.setMark(i, j);
+                }}>
+                {cell}
+              </div>
             ))}
           </div>
         ))}

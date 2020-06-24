@@ -7,18 +7,23 @@
     flex-direction: row;
 
     .cell {
+      font-size: 1.2rem;
+      font-weight: 500;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 2rem;
       width: 2rem;
       background: rgb(233, 233, 233);
+      cursor: pointer;
       &.X {
         background: rgb(230, 212, 140);
+        pointer-events: none;
       }
 
       &.O {
         background: rgb(138, 147, 250);
+        pointer-events: none;
       }
     }
   }
