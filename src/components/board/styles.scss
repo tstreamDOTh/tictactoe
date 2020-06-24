@@ -1,7 +1,8 @@
 .board {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
+  text-align: center;
   .row {
     display: flex;
     flex-direction: row;
@@ -12,17 +13,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 2rem;
-      width: 2rem;
-      background: rgb(233, 233, 233);
+      height: 2.5rem;
+      width: 2.5rem;
+      background: #b9ffb7;
+      color: #403233;
       cursor: pointer;
       &.X {
-        background: rgb(230, 212, 140);
+        background: #f19a3e;
         pointer-events: none;
+        color: white;
       }
 
       &.O {
-        background: rgb(138, 147, 250);
+        background: #403233;
+        color: white;
         pointer-events: none;
       }
     }

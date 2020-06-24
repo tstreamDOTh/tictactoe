@@ -3,11 +3,10 @@ import './styles.scss';
 import { observer, inject } from 'mobx-react';
 
 export const Board = inject('game')(
-  observer(({ game }) => {
+  observer(({ game, onReset }) => {
     const { board, winner } = game;
     return (
       <div className={'board'}>
-        <p>{winner}</p>
         {board.map((row, i) => (
           <div className={'row'}>
             {row.map((cell, j) => (
@@ -16,11 +15,17 @@ export const Board = inject('game')(
                 onClick={function onPlay() {
                   game.setMark(i, j);
                 }}>
-                {cell}
+                {cell !== null ? cell : '-'}
               </div>
             ))}
           </div>
         ))}
+        {winner && (
+          <div>
+            {<p>{`${winner} wins! 🥳 `}</p>}
+            <button onClick={onReset}>Play Again!</button>
+          </div>
+        )}
       </div>
     );
   })

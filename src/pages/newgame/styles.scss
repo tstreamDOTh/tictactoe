@@ -1,0 +1,27 @@
+input {
+  border: none;
+  padding: 0.8rem;
+  background: transparent;
+  border: 0.5rem dashed white;
+  font-size: 1.4rem;
+  margin-right: 2rem;
+  color: white;
+  width: 5rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+button {
+  background: #403233;
+  font-size: 1.4rem;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: 0.5rem solid #2b1d1e;
+  font-weight: 900;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

@@ -1,7 +1,7 @@
 import { X, O } from './constants';
 import { observable, computed, action } from 'mobx';
 
-// const sampleMarks = [['X', '-', 'X'],[('X', '-', '-')],[('-', '-', 'X')]];
+// const sampleMarks = [['X', null, 'X'],[('X', null, null)],[(null, null, 'X')]];
 
 export default class Game {
   @observable size;
@@ -9,14 +9,24 @@ export default class Game {
   @observable board;
   @observable activePlayerMark;
 
-  constructor(size = 3) {
+  constructor(size) {
     this.size = size;
-    this.board = Array(this.size).fill(Array(this.size).fill('-'));
+    this.board = Array(this.size).fill(Array(this.size).fill(null));
     this.activePlayerMark = X;
+    this.winner = null;
+  }
+
+  @action.bound
+  resetGame(size) {
+    this.size = size;
+    this.board = Array(this.size).fill(Array(this.size).fill(null));
+    this.activePlayerMark = X;
+    this.winner = null;
   }
 
   @action.bound
   setMark(i, j) {
+    console.log(this.size);
     this.board[i][j] = this.activePlayerMark;
     this.activePlayerMark = this.activePlayerMark === X ? O : X;
     this.checkWinner();
@@ -25,7 +35,7 @@ export default class Game {
   checkWinner() {
     //Check rows
     this.board.map((row, i) => {
-      if (new Set(row).size === 1 && row[0] !== '-') {
+      if (new Set(row).size === 1 && row[0] !== null) {
         this.winner = row[0];
         return;
       }
@@ -49,12 +59,12 @@ export default class Game {
       });
     });
 
-    if (new Set(d1Set).size === 1 && d1Set[0] !== '-') {
+    if (new Set(d1Set).size === 1 && d1Set[0] !== null) {
       this.winner = d1Set[0];
       return;
     }
 
-    if (new Set(d2Set).size === 1 && d2Set[0] !== '-') {
+    if (new Set(d2Set).size === 1 && d2Set[0] !== null) {
       this.winner = d2Set[0];
       return;
     }
