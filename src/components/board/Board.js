@@ -4,10 +4,10 @@ import { observer, inject } from 'mobx-react';
 
 export const Board = inject('game')(
   observer(({ game }) => {
-    const { board } = game;
-
+    const { board, winner } = game;
     return (
       <div className={'board'}>
+        <p>{winner}</p>
         {board.map((row, i) => (
           <div className={'row'}>
             {row.map((cell, j) => (

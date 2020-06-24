@@ -4,14 +4,12 @@ import './App.scss';
 import { Provider, Observer } from 'mobx-react';
 import Game from './models/game';
 
-const game = new Game(4);
+const game = new Game(3);
 
 function App() {
   return (
     <Provider game={game}>
-      <div>
         <Board />
-      </div>
     </Provider>
   );
 }
