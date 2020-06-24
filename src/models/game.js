@@ -1,7 +1,5 @@
 import { X, O } from './constants';
-import { observable, computed, action } from 'mobx';
-
-// const sampleMarks = [['X', null, 'X'],[('X', null, null)],[(null, null, 'X')]];
+import { observable, action } from 'mobx';
 
 export default class Game {
   @observable size;
@@ -29,11 +27,11 @@ export default class Game {
     console.log(this.size);
     this.board[i][j] = this.activePlayerMark;
     this.activePlayerMark = this.activePlayerMark === X ? O : X;
-    this.checkWinner();
+    this.calculateWinner();
   }
 
-  checkWinner() {
-    //Check rows
+  calculateWinner() {
+    // Check Rows
     this.board.map((row, i) => {
       if (new Set(row).size === 1 && row[0] !== null) {
         this.winner = row[0];
@@ -41,10 +39,25 @@ export default class Game {
       }
     });
 
-    //TODO Check columns
+    //Check columns
+    Array(this.size)
+      .fill(null)
+      .map((x, i) => {
+        const column = [];
+        Array(this.size)
+          .fill(null)
+          .map((x, j) => {
+            column.push(this.board[j][i]);
+          });
+
+        if (new Set(column).size === 1 && column[0] !== null) {
+          console.log(column[0]);
+          this.winner = column[0];
+          return;
+        }
+      });
 
     //Check Diagnols
-
     var d1Set = [];
     var d2Set = [];
 
